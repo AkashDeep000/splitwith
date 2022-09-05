@@ -19,7 +19,7 @@ function Groups() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
 
   return (
-    <div className="border grid justify-items-center py-3 px-2">
+    <div className="grid justify-items-center py-3 px-2">
       <button
         onClick={() => setIsCreateOpen(true)}
         className="flex justify-center w-full bg-white text-lg text-slate-800 px-3 py-2 rounded mb-3"

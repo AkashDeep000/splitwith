@@ -82,7 +82,7 @@ export default function Invite({ groupId }) {
 
   return (
     <>
-      <div className="grid px-8 place-items-center bg-slate-400/10 w-full h-screen pb-[50%]">
+      <div className="grid px-8 place-items-center bg-slate-400/10 w-full h-screen">
         <div className="w-full p-4 max-w-[25rem] bg-white">
           {isLoading ? (
             <>

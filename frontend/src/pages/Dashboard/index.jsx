@@ -12,7 +12,7 @@ function Dashboard() {
 
   useEffect(() => {
     if (!cookies.accessToken) {
-      navigate("/login");
+      navigate("/signup");
     }
   }, [cookies.accessToken]);
 

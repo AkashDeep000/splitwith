@@ -163,7 +163,7 @@ export default function AddBill() {
   return (
     <>
       <div
-        className={`inset-0 grid px-4 place-items-center backdrop-blur bg-slate-400/10 pb-[20%] ${
+        className={`inset-0 grid px-4 place-items-center backdrop-blur bg-slate-400/10 ${
           addBillStore.open ? "fixed" : "hidden"
         }`}
       >

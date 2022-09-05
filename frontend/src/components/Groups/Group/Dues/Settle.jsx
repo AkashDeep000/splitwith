@@ -56,7 +56,7 @@ export default function Settle({ useSettleUpState }) {
   return (
     <>
       <div
-        className={`grid px-8 place-items-center backdrop-blur bg-slate-400/20 w-full z-100 pb-[50%] inset-0 ${
+        className={`grid px-8 place-items-center backdrop-blur bg-slate-400/20 w-full z-100 inset-0 ${
           settleUpState.open ? "fixed" : "hidden"
         }`}
       >

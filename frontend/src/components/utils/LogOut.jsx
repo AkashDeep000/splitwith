@@ -21,7 +21,7 @@ export default function LogOut(props) {
       {children}
 
       <div
-        className={`grid px-8 place-items-center backdrop-blur bg-slate-400/10 w-full z-10 pb-[50%] ${
+        className={`grid px-8 place-items-center backdrop-blur bg-slate-400/10 w-full z-10 ${
           isOpen ? "fixed inset-0" : "hidden"
         }`}
       >

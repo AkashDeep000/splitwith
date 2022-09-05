@@ -12,7 +12,7 @@ export default function Invite({ groupId, useInviteOpen }) {
   const [isCopied, setIsCopied] = useState(false);
   return (
     <div
-      className={`grid px-8 place-items-center backdrop-blur-sm bg-slate-400/20 w-full z-10 pb-[50%] overflow-y-auto ${
+      className={`grid px-8 place-items-center backdrop-blur-sm bg-slate-400/20 w-full z-10 overflow-y-auto ${
         isInviteOpen ? "fixed inset-0" : "hidden"
       }`}
     >

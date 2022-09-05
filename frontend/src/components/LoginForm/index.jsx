@@ -51,10 +51,11 @@ const LoginForm = () => {
         if (e.response.data.message) {
           setErrorMessage(e.response.data.message);
           console.log("failed");
-          console.log(e.response.data)
-        }else {
-        setErrorMessage("Something went wrong");
-      }});
+          console.log(e.response.data);
+        } else {
+          setErrorMessage("Something went wrong");
+        }
+      });
   };
 
   const formik = useFormik({

@@ -6,8 +6,7 @@ const useUserStore = create(
     (set, get) => ({
       user: {},
       setUser: (user) => {
-        alert(JSON.stringify(user));
-        console.log("inside setUser");
+        
         const currentState = get().user;
         set({
           user: { ...currentState, ...user },

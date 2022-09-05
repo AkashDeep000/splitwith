@@ -49,7 +49,7 @@ export default function CreateGroup({ useCreateOpen }) {
 
   return (
     <div
-      className={`grid px-8 place-items-center backdrop-blur bg-slate-400/20 w-full z-10 pb-[10%] overflow-y-auto ${
+      className={`grid px-8 place-items-center backdrop-blur bg-slate-400/20 w-full z-10 overflow-y-auto ${
         isCreateOpen ? "fixed inset-0" : "hidden"
       }`}
     >
