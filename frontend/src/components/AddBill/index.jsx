@@ -37,7 +37,7 @@ export default function AddBill() {
     console.log(eror);
   }
 
-if(!data?.length) {
+if(data?.length <= 0) {
   return (
           <div className={`inset-0 grid px-4 place-items-center backdrop-blur bg-slate-400/10 ${
             addBillStore.open ? "fixed" : "hidden"
