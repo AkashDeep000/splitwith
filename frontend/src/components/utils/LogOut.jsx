@@ -17,6 +17,7 @@ export default function LogOut(props) {
   };
 
   return (
+    <div>
     <button disabled={isOpen} className={className} onClick={askConfirmation}>
       {children}
 
@@ -44,5 +45,6 @@ export default function LogOut(props) {
         </div>
       </div>
     </button>
+    </div>
   );
 }

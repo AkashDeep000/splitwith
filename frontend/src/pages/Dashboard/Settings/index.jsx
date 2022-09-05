@@ -16,9 +16,11 @@ function Settings() {
 
   return (
     <>
-      <LogOut className="mt-2 text-gray-700 text-lg bg-white w-full border px-2 py-4">
-        Log Out
-      </LogOut>
+      
+        <LogOut className="mt-2 text-gray-700 text-lg bg-white w-full border px-2 py-4">
+          Log Out
+        </LogOut>
+  
     </>
   );
 }
