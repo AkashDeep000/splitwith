@@ -21,7 +21,7 @@ const LoginForm = () => {
     setLoginState("processing");
     axios({
       method: "post",
-      url: `${import.meta.env.VITE_API_URL}/login`,
+      url: `${import.meta.env.VITE_API_URL}/auth/login`,
       data: values,
     })
       .then((res) => {
