@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+provider = "prisma-client-js"
+}
+
+datasource db {
+provider = "mongodb"
+url      = env("DATABASE_URL")
+}
+
+
+
+type PaidFor {
+id String @db.ObjectId
+amount Float
+}
+
+model User {
+id String @id @default(auto()) @map("_id") @db.ObjectId
+name String
+email String? @unique
+hashedPassword String?
+salt String?
+profileImg String?
+groupIDs String[]   @db.ObjectId
+groups Group[] @relation(fields: [groupIDs], references: [id])
+billsPaid Bill[]
+
+settlementsSent Settlement[]@relation("sender")
+settlementsReceived Settlement[]@relation("receiver")
+}
+
+model Group {
+id String @id @default(auto()) @map("_id") @db.ObjectId
+name String
+category String?
+profileImg String?
+createdBy String @db.ObjectId
+memberIDs String[] @db.ObjectId
+members User[]  @relation(fields: [memberIDs], references: [id])
+bills Bill[]
+settlements Settlement[]
+}
+
+model Bill {
+id String @id @default(auto()) @map("_id") @db.ObjectId
+amount Float
+paidBy User @relation(fields: [paidById], references: [id])
+paidById String @db.ObjectId
+paidFor PaidFor[]
+createdAt DateTime  @default(now())
+title String
+receiptImg String?
+group Group  @relation(fields: [groupId], references: [id])
+groupId String @db.ObjectId
+}
+
+model Settlement {
+id String @id @default(auto()) @map("_id") @db.ObjectId
+amount Float
+sender User @relation("sender", fields: [senderId], references: [id])
+senderId String @db.ObjectId
+
+receiver User @relation("receiver", fields: [receiverId], references: [id])
+receiverId String @db.ObjectId
+
+group Group  @relation(fields: [groupId], references: [id])
+groupId String @db.ObjectId
+}
