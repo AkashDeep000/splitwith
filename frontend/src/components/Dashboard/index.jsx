@@ -77,6 +77,11 @@ export default function Dashboard() {
                 See All
               </Link>
             </div>
+            {groups.length <= 0 ? (
+              <div className="border border-2 border-dotted p-5 px-8 text-center text-slate-700">
+                There is no group please create one
+              </div>
+            ) : null}
             <div className="grid grid-cols-3 px-.5 gap-2">
               {groups.map((group, index) => {
                 if (index > 2) {
@@ -102,6 +107,11 @@ export default function Dashboard() {
                 See All
               </Link>
             </div>
+                        {groups.length <= 0 ? (
+              <div className="border border-2 border-dotted p-5 px-8 text-center text-slate-700">
+                There is no transactions to show
+              </div>
+            ) : null}
             <div className="grid gap-4">
               {transactions?.map((transaction, index) => {
                 if (index > 4) {

@@ -31,6 +31,11 @@ function Groups() {
       <CreateGroup useCreateOpen={[isCreateOpen, setIsCreateOpen]} />
       {isLoading ? "Loading..." : isError ? "Error" : ""}
       <div className="grid gap-3 w-full">
+        {data?.length <= 0 ? (
+          <div className="border border-2 border-dotted p-5 px-8 text-center text-slate-700">
+            There is no group please create one
+          </div>
+        ) : null}
         {data?.map((group) => (
           <GroupCard key={group?.id} data={group} />
         ))}

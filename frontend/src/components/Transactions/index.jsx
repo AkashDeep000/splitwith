@@ -21,6 +21,12 @@ function Transactions() {
       {isLoading ? "Loading..." : isError ? "Error" : ""}
 
       <div className="grid py-1.5 px-1.5 gap-4 w-full">
+        {data?.length <= 0 ? (
+          <div className="border border-2 border-dotted p-5 px-8 text-center text-slate-700">
+            There is no transaction to show
+          </div>
+        ) : null}
+
         {data?.map((transaction) => (
           <TransactionsCard key={transaction?.id} transaction={transaction} />
         ))}

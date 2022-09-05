@@ -12,7 +12,7 @@ export default function Invite({ groupId, useInviteOpen }) {
   const [isCopied, setIsCopied] = useState(false);
   return (
     <div
-      className={`grid px-8 place-items-center backdrop-blur-sm bg-slate-400/20 w-full z-10 overflow-y-auto ${
+      className={`grid px-8 place-items-center backdrop-blur-sm bg-slate-400/20 w-full z-10 overflow-scroll ${
         isInviteOpen ? "fixed inset-0" : "hidden"
       }`}
     >
@@ -28,11 +28,11 @@ export default function Invite({ groupId, useInviteOpen }) {
           />
         </div>
         <div className="text-center">
-          <p className="p-3">Share this link to invite new member</p>
+          <p className="p-3 ">Share this link to invite new member</p>
           <div className="p-2 m-3 bg-gray-100 overflow-x-auto">
             {import.meta.env.VITE_APP_URL}/invite/{groupId}
           </div>
-          <button className="bg-indigo-500 text-white px-3 py-1 rounded my-3">
+          <button className="bg-indigo-500 text-white px-3 py-1 rounded mt-2 mb-4">
             <CopyToClipboard
               className="text-center"
               text={`${import.meta.env.VITE_APP_URL}/invite/${groupId}`}
@@ -54,6 +54,8 @@ export default function Invite({ groupId, useInviteOpen }) {
             </CopyToClipboard>
           </button>
         </div>
+
+
       </div>
     </div>
   );

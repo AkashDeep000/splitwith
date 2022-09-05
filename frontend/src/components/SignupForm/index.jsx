@@ -7,6 +7,9 @@ import { useState } from "react";
 import Spinner from "@/components/utils/Spinner";
 import { useCookies } from "react-cookie";
 import useInviteStore from "@/store/inviteStore";
+import {FiEye, FiEyeOff} from "react-icons/fi"
+
+
 
 const SignupForm = () => {
   const [singupState, setSingupState] = useState("idle");
@@ -15,6 +18,7 @@ const SignupForm = () => {
   const [cookies, setCookie] = useCookies(["accessToken"]);
   const invitedGroup = useInviteStore((state) => state?.invite);
   const removeInvite = useInviteStore((state) => state?.removeInvite);
+  const [isPassShow, setIsPassShow] = useState(false);
 
   const navigate = useNavigate();
   const handleSignUp = (values) => {
@@ -125,17 +129,31 @@ const SignupForm = () => {
           <label className="formInputLebel" htmlFor="password">
             Password
           </label>
-          <input
-            className={`formInput ${
-              formik.errors.password ? "formInputError" : ""
-            }`}
-            id="password"
-            name="password"
-            type="password"
-            onChange={formik.handleChange}
-            value={formik.values.password}
-            placeholder="Enter password"
-          />
+          <div className="relative">
+            <input
+              className={`formInput ${
+                formik.errors.password ? "formInputError" : ""
+              }`}
+              id="password"
+              name="password"
+              type={isPassShow ? "text" : "password"}
+              onChange={formik.handleChange}
+              value={formik.values.password}
+              placeholder="Enter password"
+            />
+            {isPassShow ? (
+              <FiEye
+                onClick={() => setIsPassShow(false)}
+                className="absolute text-slate-700 top-3 bottom-0 right-3 w-5 h-5"
+              />
+            ) : (
+              <FiEyeOff
+                onClick={() => setIsPassShow(true)}
+                className="absolute text-slate-700 top-3 bottom-0 right-3 w-5 h-5"
+              />
+            )}
+          </div>
+
           {formik.errors.password ? (
             <div className="formInputErrorText">{formik.errors.password}</div>
           ) : null}

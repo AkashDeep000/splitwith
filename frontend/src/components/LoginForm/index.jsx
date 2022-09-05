@@ -7,6 +7,7 @@ import { useState } from "react";
 import Spinner from "@/components/utils/Spinner";
 import { useCookies } from "react-cookie";
 import useInviteStore from "@/store/inviteStore";
+import {FiEye, FiEyeOff} from "react-icons/fi"
 
 const LoginForm = () => {
   const [loginState, setLoginState] = useState("idle");
@@ -15,7 +16,7 @@ const LoginForm = () => {
   const [cookies, setCookie] = useCookies(["accessToken"]);
   const invitedGroup = useInviteStore((state) => state?.invite);
   const removeInvite = useInviteStore((state) => state?.removeInvite);
-
+const [isPassShow, setIsPassShow] = useState(false)
   const navigate = useNavigate();
   const handleLogin = (values) => {
     setLoginState("processing");
@@ -106,21 +107,32 @@ const LoginForm = () => {
           <label className="formInputLebel" htmlFor="password">
             Password
           </label>
+          <div className="relative">
           <input
             className={`formInput ${
               formik.errors.password ? "formInputError" : ""
             }`}
             id="password"
             name="password"
-            type="password"
+            type={isPassShow ? "text" : "password"}
             onChange={formik.handleChange}
             value={formik.values.password}
             placeholder="Enter password"
           />
+               {isPassShow ?   <FiEye 
+               onClick={() => setIsPassShow(false)}
+               className="absolute text-slate-700 top-3 bottom-0 right-3 w-5 h-5"/>
+               :
+                  <FiEyeOff 
+                  onClick={() => setIsPassShow(true)}
+                  className="absolute text-slate-700 top-3 bottom-0 right-3 w-5 h-5"/>
+               }
+                  </div>
           {formik.errors.password ? (
             <div className="formInputErrorText">{formik.errors.password}</div>
           ) : null}
         </div>
+
         <button
           disabled={loginState === "processing"}
           className="px-3 py-2 font-poppins bg-indigo-500 text-white text-lg w-40 rounded justify-self-center my-2"
