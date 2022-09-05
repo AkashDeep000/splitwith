@@ -21,7 +21,7 @@ const SignupForm = () => {
     setSingupState("processing");
     axios({
       method: "post",
-      url: `${import.meta.env.VITE_API_URL}/auth/login`,
+      url: `${import.meta.env.VITE_API_URL}/auth/signup`,
       data: values,
     })
       .then((res) => {

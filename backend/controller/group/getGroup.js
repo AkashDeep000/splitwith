@@ -239,6 +239,7 @@ const getGroup = async (req, res, next) => {
       name: group.name,
       category: group.category,
       profileImg: group.profileImg,
+      createdBy: group.createdBy,
       totalMembers: members.length,
       totalBill,
       yourBill,
