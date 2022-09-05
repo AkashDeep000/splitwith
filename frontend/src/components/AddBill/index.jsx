@@ -37,24 +37,6 @@ export default function AddBill() {
     console.log(eror);
   }
 
-if(data?.length <= 0) {
-  return (
-          <div className={`inset-0 grid px-4 place-items-center backdrop-blur bg-slate-400/10 ${
-            addBillStore.open ? "fixed" : "hidden"
-          }`}>
-        <div className="w-full p-4 max-w-[25rem] bg-white grid gap-4 place-items-center">
-        <p className="text-slate-800"> Does not have any group. First create one.
-        </p>
-        <Link to="/dashboard/groups" 
-        onClick={() => setAddBillStore({open : false})}
-        className="px-3 py-1.5 rounded text-white bg-indigo-500">
-        Go to groups
-        </Link>
-</div>
-</div>
-
-    )
-}
 
   const {
     isLoading: isAdding,
@@ -91,7 +73,7 @@ if(data?.length <= 0) {
   };
 
   useEffect(() => {
-    if (!data) return;
+    if (!data || data.length <= 0) return;
 
     if (addBillStore.groupId) {
       setCurrentGroup(data.find((x) => x.id === addBillStore.groupId));
@@ -182,6 +164,25 @@ if(data?.length <= 0) {
     formik.setFieldValue("amount", normValue === 0 ? null : normValue);
   };
   
+  
+if(data?.length <= 0) {
+  return (
+          <div className={`inset-0 grid px-4 place-items-center backdrop-blur bg-slate-400/10 ${
+            addBillStore.open ? "fixed" : "hidden"
+          }`}>
+        <div className="w-full p-4 max-w-[25rem] bg-white grid gap-4 place-items-center">
+        <p className="text-slate-800"> Does not have any group. First create one.
+        </p>
+        <Link to="/dashboard/groups" 
+        onClick={() => setAddBillStore({open : false})}
+        className="px-3 py-1.5 rounded text-white bg-indigo-500">
+        Go to groups
+        </Link>
+</div>
+</div>
+
+    )
+}
     return (
       <>
         <div
