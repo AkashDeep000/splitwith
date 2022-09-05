@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=ADELIA&family=Poppins&family=Ubuntu&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::after,
+  *::before {
+    @apply box-border;
+  }
+  body {
+    @apply bg-[rgb(244,246,250)] font-poppins;
+  }
+  button {
+    @apply select-none;
+  }
+  .hexagone {
+    display: inline-block;
+    filter: url(#round);
+  }
+  .hexagone::before {
+    content: "";
+    display: block;
+    padding-top: 115%;
+    background: currentColor;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+  .formInput {
+    @apply bg-white border border-2 border-slate-300 focus:outline-indigo-400 rounded w-full h-12 px-2 text-indigo-500;
+  }
+  .formInputError {
+    @apply !border-red-400;
+  }
+  .formInputLebel {
+    @apply text-slate-600 font-poppins;
+  }
+  .formInputErrorText {
+    @apply text-sm text-red-400;
+  }
+}
