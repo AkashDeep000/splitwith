@@ -83,7 +83,7 @@ export default function Dashboard() {
                   return null;
                 }
                 return (
-                  <Link to={`/dashboard/groups/${group.id}`}>
+                  <Link key={group.id} to={`/dashboard/groups/${group.id}`}>
                     <div className="bg-white rounded-lg p-[10%] text-center">
                       <div className="bg-orange-50 m-[15%] p-[15%] rounded-full">
                         <img className="w-full" src={profileImage(group)} />
@@ -109,7 +109,7 @@ export default function Dashboard() {
                 }
                 return (
                   <TransactionsCard
-                    key={transaction?.id}
+                    key={transaction.id}
                     transaction={transaction}
                   />
                 );

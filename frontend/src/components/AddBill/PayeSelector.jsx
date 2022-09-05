@@ -18,6 +18,7 @@ export default function MemberSelector({
           return (
             <>
               <div
+              key={el.id}
                 onClick={() => {
                   setCurrentMember(el);
                   setIsPayeOpen(false);

@@ -7,15 +7,18 @@ import { getGroup } from "@/helper/apiHelper/groupApi";
 import { useCookies } from "react-cookie";
 import useAddBillStore from "@/store/addBillStore";
 import { useEffect, useState } from "react";
+import useUserStore from "@/store/userStore";
 
 function Group({ groupId }) {
   const [cookies] = useCookies(["accessToken"]);
   const setAddBillStore = useAddBillStore((state) => state.setAddBill);
   const [activeBtn, setActiveBtn] = useState("bills");
+  const user = useUserStore((state) => state.user);
 
   useEffect(() => {
     setAddBillStore({ groupId });
   }, []);
+
   const { data, isLoading, isError, error } = useQuery(
     [`group-${groupId}`],
     () => getGroup({ token: cookies.accessToken, groupId })
@@ -75,7 +78,10 @@ function Group({ groupId }) {
                 otherDues={data.otherDues}
               />
             ) : activeBtn === "members" ? (
-              <Members data={data.members} />
+              <Members
+                data={data.members}
+                isAdmin={data.createdBy == user?.id}
+              />
             ) : null}
           </div>
         </>

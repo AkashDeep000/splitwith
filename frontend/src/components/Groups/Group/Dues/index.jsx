@@ -23,7 +23,7 @@ export default function Dues({ groupId, myDues, otherDues }) {
       ) : null}
       {myDues.map((due) => {
         return (
-          <div className="shadow-[0_0_.3rem_#00000013] p-2 px-3 grid items-center grid-cols-[1fr_auto_1fr] text-slate-700">
+          <div key={due.sender.id + due.receiver.id} className="shadow-[0_0_.3rem_#00000013] p-2 px-3 grid items-center grid-cols-[1fr_auto_1fr] text-slate-700">
             <div className="grid place-items-center">
               <div className="bg-orange-50 rounded-full w-fit p-2">
                 <img
@@ -100,7 +100,7 @@ export default function Dues({ groupId, myDues, otherDues }) {
 
       {otherDues.map((due) => {
         return (
-          <div className="shadow-[0_0_.3rem_#00000013] p-2 px-3 grid items-center grid-cols-[1fr_auto_1fr] text-slate-700">
+          <div key={due.sender.id + due.receiver.id} className="shadow-[0_0_.3rem_#00000013] p-2 px-3 grid items-center grid-cols-[1fr_auto_1fr] text-slate-700">
             <div className="grid place-items-center">
               <div className="bg-orange-50 rounded-full w-fit p-2">
                 <img

@@ -8,9 +8,12 @@ export default function Members({ data }) {
   return (
     <div className="grid gap-4">
       {data.map((member) => {
-        const balence = floatify(member.give - member.take);
+        const balence = floatify(member.give || 0 - member.take || 0);
         return (
-          <div className="shadow-[0_0_.3rem_#00000013] p-2 px-3 grid items-center grid-cols-[1fr_auto] text-slate-700">
+          <div
+            key={member.id}
+            className="shadow-[0_0_.3rem_#00000013] p-2 px-3 grid items-center grid-cols-[1fr_auto] text-slate-700"
+          >
             <div className="flex gap-4 items-center">
               <div className="bg-orange-50 rounded-full w-fit p-2">
                 <img
@@ -19,9 +22,8 @@ export default function Members({ data }) {
                 />
               </div>
               <div>
-              <p className="text-slate-700">{member.name}</p>
-              <p className="text-slate-600 text-sm">{member.email}</p>
-              
+                <p className="text-slate-700">{member.name}</p>
+                <p className="text-slate-600 text-sm">{member.email}</p>
               </div>
             </div>
 

@@ -116,3 +116,23 @@ export async function settleUp({ token, groupId, senderId, amount }) {
   console.log(response);
   return response.data;
 }
+
+export async function deleteMember({ token, groupId, senderId, amount }) {
+  console.log(token, groupId, memberId);
+
+  if (!token || !groupId || !memberId) {
+    return Promise.reject(new Error("There is some field misding provided!"));
+  }
+
+  const response = await api({
+    method: "delete",
+    url: `group/${groupId}/delete-member`,
+    headers: { Authorization: `Bearer ${token}` },
+    data: {
+      groupId,
+      memberId,
+    },
+  });
+  console.log(response);
+  return response.data;
+}

@@ -67,14 +67,17 @@ export default function AddBill() {
     }
   );
 
+  const floatify = (number) => {
+    return parseFloat(number.toFixed(10));
+  };
+
   useEffect(() => {
     if (!data) return;
-    
+
     if (addBillStore.groupId) {
-      
       setCurrentGroup(data.find((x) => x.id === addBillStore.groupId));
     } else {
-    setCurrentGroup(data[0]);
+      setCurrentGroup(data[0]);
     }
   }, [data, addBillStore]);
 
@@ -183,10 +186,16 @@ export default function AddBill() {
                 isGroupOpen ? "rounded-t-lg border border-b-0" : "rounded-full"
               }`}
             >
-              <div className="p-1.5 bg-orange-200 rounded-full">
+              <div
+                onClick={() => setIsGroupOpen(!isGroupOpen)}
+                className="p-1.5 bg-orange-200 rounded-full"
+              >
                 <img className=" h-5 w-5" src={profileImage(currentGroup)} />
               </div>
-              <p className="text-slate-800 line-clamp-1 h-6 text-left">
+              <p
+                onClick={() => setIsGroupOpen(!isGroupOpen)}
+                className="text-slate-800 line-clamp-1 h-6 text-left"
+              >
                 {currentGroup.name}
               </p>
               <GroupSelector
@@ -211,12 +220,16 @@ export default function AddBill() {
 
           <div className="grid place-items-center grid-cols-[auto_1fr_auto] gap-2">
             <p className="">Paid by :</p>
+
             <div
               className={`transition-all w-full relative bg-orange-100 p-1 grid grid-cols-[auto_1fr] items-center gap-1 ${
                 isPayeOpen ? "rounded-t-lg border border-b-0" : "rounded-full"
               }`}
             >
-              <div className="p-1.5 bg-orange-200 rounded-full">
+              <div
+                onClick={() => setIsPayeOpen(!isPayeOpen)}
+                className="p-1.5 bg-orange-200 rounded-full"
+              >
                 <img
                   className=" h-5 w-5"
                   src={
@@ -225,11 +238,15 @@ export default function AddBill() {
                   }
                 />
               </div>
-              <p className="text-slate-800 line-clamp-1 h-6 text-left">
+              <p
+                onClick={() => setIsPayeOpen(!isPayeOpen)}
+                className="text-slate-800 line-clamp-1 h-6 text-left"
+              >
                 {currentMember.id === user?.id
                   ? `You (${currentMember.name})`
                   : currentMember.name}
               </p>
+
               <PayeSelector
                 user={user}
                 data={members}
@@ -288,7 +305,20 @@ export default function AddBill() {
               <div className="formInputErrorText">{formik.errors.amount}</div>
             ) : null}
           </div>
-
+          <div className="my-3 text-slate-800 flex justify-between">
+            {members && formik.values.amount ? (
+              <>
+                <p>Splitting between: {" "}
+                <span className="text-indigo-500">{members.length}</span></p>
+                <p>
+                  Per head:{" "}
+                          <span className="text-indigo-500">
+                  {floatify(formik.values.amount / members.length)}
+                  </span>
+                </p>
+              </>
+            ) : null}
+          </div>
           <div className="grid grid-flow-col grid-cols-2 gap-2 mt-3">
             <button
               onClick={(e) => {
