@@ -337,7 +337,7 @@ if(data?.length <= 0) {
                   <p>
                     Per head:{" "}
                     <span className="text-indigo-500">
-                      {floatify(formik.values.amount / members.length)}
+                      {floatify(formik.values.amount / members.length).toFixed(2)}
                     </span>
                   </p>
                 </>

@@ -76,11 +76,13 @@ function Group({ groupId }) {
                 groupId={groupId}
                 myDues={data.myDues}
                 otherDues={data.otherDues}
+                myAddedMembersDues={data.myAddedMembersDues}
+                isAdmin={data.isAdmin}
               />
             ) : activeBtn === "members" ? (
               <Members
                 data={data.members}
-                isAdmin={data.createdBy == user?.id}
+                isAdmin={data.isAdmin}
               />
             ) : null}
           </div>

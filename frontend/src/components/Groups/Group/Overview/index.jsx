@@ -50,6 +50,7 @@ function Overview({ groupId, data }) {
             <Invite
               groupId={groupId}
               useInviteOpen={[isInviteOpen, setIsInviteOpen]}
+              isAdmin={data.isAdmin}
             />
           </div>
           <p className="mt-2 text-slate-700">

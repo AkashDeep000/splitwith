@@ -14,9 +14,9 @@ export default function Bills({ data }) {
   };
   const getMyBalChange = (bill) => {
     if (user.id === bill.paidById) {
-      return floatify(bill.amount - bill.myCharge);
+      return floatify(bill.amount || 0 - bill.myCharge || 0);
     } else {
-      return 0 - bill.myCharge;
+      return 0 - bill.myCharge || 0;
     }
   };
 

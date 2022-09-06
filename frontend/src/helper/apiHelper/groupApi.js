@@ -97,20 +97,42 @@ export async function addBill({ token, groupId, billInfo }) {
   return response.data;
 }
 
-export async function settleUp({ token, groupId, senderId, amount }) {
-  console.log(token, groupId, senderId, amount);
+export async function settleUp({ token, groupId, senderId, receiverId, amount }) {
+  console.log(token, groupId, senderId, receiverId, amount);
 
   if (!token || !groupId || !senderId || !amount) {
     return Promise.reject(new Error("There is some field misding provided!"));
   }
 
+  const data = {
+    senderId,
+    amount,
+  };
+
+  if (receiverId) {
+    data.receiverId = receiverId;
+  }
   const response = await api({
     method: "post",
     url: `group/${groupId}/settle`,
     headers: { Authorization: `Bearer ${token}` },
+    data,
+  });
+  console.log(response);
+  return response.data;
+}
+
+export async function addMember({ token, groupId, name }) {
+  if (!token || !groupId || !name) {
+    return Promise.reject(new Error("There is some field misding provided!"));
+  }
+
+  const response = await api({
+    method: "post",
+    url: `group/${groupId}/member`,
+    headers: { Authorization: `Bearer ${token}` },
     data: {
-      senderId,
-      amount,
+      name,
     },
   });
   console.log(response);
