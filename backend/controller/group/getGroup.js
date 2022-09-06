@@ -120,6 +120,7 @@ const getGroup = async (req, res, next) => {
 
     const myDues = [];
     const otherDues = [];
+    const myAddedMembersDues = [];
 
     const takes = [];
     const gives = [];
@@ -165,10 +166,12 @@ const getGroup = async (req, res, next) => {
             sender: {
               id: takes[0].id,
               name: members[takenMemberIndex].name,
+              email: members[takenMemberIndex].email,
             },
             receiver: {
               id: gives[0].id,
               name: members[givenMemberIndex].name,
+              email: members[givenMemberIndex].email,
             },
             amount: takes[0].amount,
           };
@@ -177,6 +180,8 @@ const getGroup = async (req, res, next) => {
             data.receiver.id === req.payload.aud
           ) {
             myDues.push(data);
+          } else if (!data.receiver.email || !data.sender.email) {
+            myAddedMembersDues.push(data);
           } else {
             otherDues.push(data);
           }
@@ -188,10 +193,12 @@ const getGroup = async (req, res, next) => {
             sender: {
               id: takes[0].id,
               name: members[takenMemberIndex].name,
+              email: members[takenMemberIndex].email,
             },
             receiver: {
               id: gives[0].id,
               name: members[givenMemberIndex].name,
+              email: members[givenMemberIndex].email,
             },
             amount: takes[0].amount,
           };
@@ -200,6 +207,8 @@ const getGroup = async (req, res, next) => {
             data.receiver.id === req.payload.aud
           ) {
             myDues.push(data);
+          } else if (!data.receiver.email || !data.sender.email) {
+            myAddedMembersDues.push(data);
           } else {
             otherDues.push(data);
           }
@@ -211,18 +220,22 @@ const getGroup = async (req, res, next) => {
             sender: {
               id: takes[0].id,
               name: members[takenMemberIndex].name,
+              email: members[takenMemberIndex].email,
             },
             receiver: {
               id: gives[0].id,
               name: members[givenMemberIndex].name,
+              email: members[givenMemberIndex].email,
             },
-            amount: gives[0].amount,
+            amount: takes[0].amount,
           };
           if (
             data.sender.id === req.payload.aud ||
             data.receiver.id === req.payload.aud
           ) {
             myDues.push(data);
+          } else if (!data.receiver.email || !data.sender.email) {
+            myAddedMembersDues.push(data);
           } else {
             otherDues.push(data);
           }
@@ -234,6 +247,10 @@ const getGroup = async (req, res, next) => {
     };
     addDues();
 
+    let isAdmin = false;
+    if (group.createdBy === req.payload.aud) {
+      isAdmin = true;
+    }
     const response = {
       id: group.id,
       name: group.name,
@@ -247,7 +264,9 @@ const getGroup = async (req, res, next) => {
       bills: group.bills,
       myDues,
       otherDues,
+      myAddedMembersDues,
       members,
+      isAdmin,
     };
     console.log(yourBal, yourBill);
     res.send(response);

@@ -20,7 +20,7 @@ const createMember = async (req, res, next) => {
       },
     });
 
-    if (group.createdBy === req.payload.aud) {
+    if (group.createdBy !== req.payload.aud) {
       return next(createError.Unauthorized());
     }
 
