@@ -8,7 +8,8 @@ export default function Members({ data }) {
   return (
     <div className="grid gap-4">
       {data.map((member) => {
-        const balence = floatify(member.give || 0 - member.take || 0);
+        const balence = floatify((member.give || 0) - (member.take || 0));
+        
         return (
           <div
             key={member.id}

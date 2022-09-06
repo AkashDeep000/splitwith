@@ -14,7 +14,7 @@ export default function Bills({ data }) {
   };
   const getMyBalChange = (bill) => {
     if (user.id === bill.paidById) {
-      return floatify(bill.amount || 0 - bill.myCharge || 0);
+      return floatify((bill.amount || 0) - (bill.myCharge || 0));
     } else {
       return 0 - bill.myCharge || 0;
     }
@@ -37,7 +37,9 @@ export default function Bills({ data }) {
                   <img className="" src="/images/invoice.png" />
                 </div>
 
-                <p className="mt-1 text-sm text-center">{getDate(bill.createdAt)}</p>
+                <p className="mt-1 text-sm text-center">
+                  {getDate(bill.createdAt)}
+                </p>
               </div>
               <div className="grid h-full items-center px-3">
                 <p className="line-clamp-1 text-slate-700">{bill.title}</p>
